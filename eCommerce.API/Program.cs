@@ -26,6 +26,20 @@ builder.Services.AddAutoMapper(config =>
 //Fluent Validation
 builder.Services.AddFluentValidationAutoValidation();
 
+//API Endpoint --> Swagger
+builder.Services.AddEndpointsApiExplorer();
+
+builder.Services.AddSwaggerGen();
+
+builder.Services.AddCors(options =>
+{
+    options.AddDefaultPolicy(policy =>
+    {
+        policy.AllowAnyOrigin()
+              .AllowAnyHeader()
+              .AllowAnyMethod();
+    });
+});
 //Build App
 var app = builder.Build();
 
@@ -34,6 +48,11 @@ app.UseExceptionHandlingMiddleware();
 
 //Routing
 app.UseRouting();
+app.UseSwagger();
+
+app.UseSwaggerUI();
+
+app.UseCors();
 
 //Authentication & Authorization
 app.UseAuthentication();
