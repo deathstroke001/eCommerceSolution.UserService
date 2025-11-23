@@ -16,7 +16,9 @@ namespace eCommerce.Infrastructure.DBContext
         public DapperDbContext(IConfiguration configuration)
         {
             _configuration = configuration;
-            string connectionString = _configuration.GetConnectionString("PostgresConnection") ?? throw new InvalidOperationException("Connection string 'PostgresConnection' not found.");
+            string ISLOCAL = _configuration.GetConnectionString("ISLOCAL") ?? throw new InvalidOperationException("Connection string 'PostgresConnection' not found.");
+            string connectionString = ISLOCAL == "1" ? "Host=ecommerceusers.postgres.database.azure.com; Port=5432; Database=eCommerceUsers; Username=postgresadmin; Password=I@mthebest10"
+                :  Environment.GetEnvironmentVariable("CONNECTIONSTRINGS_DEFAULTCONNECTION_USERS")!;
             dbConnection = new NpgsqlConnection(connectionString);
         }
 
