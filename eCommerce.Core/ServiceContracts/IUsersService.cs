@@ -21,4 +21,12 @@ public interface IUsersService
   /// <param name="registerRequest"></param>
   /// <returns></returns>
   Task<AuthenticationResponse?> Register(RegisterRequest registerRequest);
+
+    /// <summary>
+    /// Gets a user by their unique identifier.
+    /// </summary>
+    /// <param name="userID">The user's unique identifier (<see cref="Guid"/>).</param>
+    /// <returns>An instance of <see cref="eCommerce.Core.DTO.UserDTO"/> representing the user.</returns>
+    Task<UserDTO> GetUserByUserID(Guid userID);
+
 }
