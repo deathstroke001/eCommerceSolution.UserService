@@ -21,7 +21,7 @@ export class ProductsService {
   }
 
   searchProducts(searchString: string): Observable<ProductResponse[]> {
-    return this.http.get<ProductResponse[]>(`${this.productsAPIURL}search/${searchString}`);
+    return this.http.get<ProductResponse[]>(`${this.productsAPIURL}/search/${searchString}`);
   }
 
   getProductByProductID(productID: string): Observable<ProductResponse> {
@@ -33,7 +33,7 @@ export class ProductsService {
   }
 
   deleteProduct(productID: string): Observable<boolean> {
-    return this.http.delete<boolean>(`${this.productsAPIURL}${productID}`);
+    return this.http.delete<boolean>(`${this.productsAPIURL}/${productID}`);
   }
 
   createProduct(newProductRequest: NewProductRequest): Observable<ProductResponse> {
